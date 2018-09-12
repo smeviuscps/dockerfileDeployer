@@ -1,4 +1,4 @@
- FROM php:7.1
+FROM php:7.1
 
 RUN apt-get update \
   && apt-get install -y libcurl4-openssl-dev sudo git libxslt-dev mercurial subversion zlib1g-dev graphviz zip libmcrypt-dev libicu-dev g++ libpcre3-dev libgd-dev libfreetype6-dev sqlite \
@@ -21,5 +21,3 @@ RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server && service mysql start && mysql -uroot -e "create database migrate;"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && composer global require "fxp/composer-asset-plugin:^1.4.2" && composer global require hirak/prestissimo
-
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash && apt-get install -y nodejs && apt-get clean
